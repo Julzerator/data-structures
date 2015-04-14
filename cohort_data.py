@@ -17,9 +17,13 @@ def unique_houses(filename):
 
     for line in open(filename):
         line = line.rstrip()
-        line = line.split("|")
-        houses.add(line[2])
-        #  How do we remove the None?
+        person_info = line.split("|")
+
+        fname, lname, house, advisor, cohort = person_info
+
+        if house != None:
+            houses.add(house)
+        
     return houses
 
 
@@ -41,16 +45,18 @@ def sort_by_cohort(filename):
 
     for line in open(filename):
         line = line.rstrip()
-        line = line.split("|")
+        person_info = line.split("|")
 
-        if line[4] == "Spring 2015":
-            spring_15.append(line[0] + " " + line[1])
+        fname, lname, house, advisor, cohort = person_info
 
-        elif line[4] == "Winter 2015":
-            winter_15.append(line[0] + " " + line[1])
+        if cohort == "Spring 2015":
+            spring_15.append(fname + " " + lname)
+
+        elif cohort == "Winter 2015":
+            winter_15.append(fname + " " + lname)
 
         else:
-            tas.append(line[0] + " " + line[1])
+            tas.append(fname + " " + lname)
 
     #  all_students = [winter_15.sort(), spring_15.sort(), tas.sort()]
     spring_15 = sorted(spring_15)
