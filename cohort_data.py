@@ -39,7 +39,24 @@ def sort_by_cohort(filename):
     spring_15 = []
     tas = []
 
-    # Code goes here
+    for line in open(filename):
+        line = line.rstrip()
+        line = line.split("|")
+
+        if line[4] == "Spring 2015":
+            spring_15.append(line[0] + " " + line[1])
+
+        elif line[4] == "Winter 2015":
+            winter_15.append(line[0] + " " + line[1])
+
+        else:
+            tas.append(line[0] + " " + line[1])
+
+    #  all_students = [winter_15.sort(), spring_15.sort(), tas.sort()]
+    spring_15 = sorted(spring_15)
+    winter_15 = sorted(winter_15)
+    tas = sorted(tas)
+    all_students = [winter_15, spring_15, tas]
 
     return all_students
 
@@ -140,3 +157,5 @@ def find_house_members_by_student_name(student_list):
     return
 
 print unique_houses("cohort_data.txt")
+
+print sort_by_cohort("cohort_data.txt")
