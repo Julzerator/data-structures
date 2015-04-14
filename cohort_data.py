@@ -15,8 +15,11 @@ def unique_houses(filename):
 
     houses = set()
 
-    # Code goes here
-
+    for line in open(filename):
+        line = line.rstrip()
+        line = line.split("|")
+        houses.add(line[2])
+        #  How do we remove the None?
     return houses
 
 
@@ -136,3 +139,4 @@ def find_house_members_by_student_name(student_list):
 
     return
 
+print unique_houses("cohort_data.txt")
